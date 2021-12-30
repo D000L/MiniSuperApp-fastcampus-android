@@ -6,18 +6,22 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import com.arkivanov.decompose.ExperimentalDecomposeApi
 import com.arkivanov.decompose.extensions.compose.jetpack.Children
+import com.arkivanov.decompose.extensions.compose.jetpack.animation.child.slide
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
 import com.doool.minisuperapp_android.financeHome.FinanceHome
 
+@OptIn(ExperimentalDecomposeApi::class)
 @Composable
 fun FinanceHomeUI(component: FinanceHome) {
   val router by component.routerState.subscribeAsState()
 
-  Children(routerState = router) {
+  Children(routerState = router, animation = slide()) {
     when (val child = it.instance) {
       is FinanceHome.FinanceHomeChild.Home -> FinanceHomeDashboardUI(child)
       is FinanceHome.FinanceHomeChild.AddPayment -> AddPaymentMethodUI(child.component)
+      is FinanceHome.FinanceHomeChild.Topup -> TopupUI(child.component)
     }
   }
 }

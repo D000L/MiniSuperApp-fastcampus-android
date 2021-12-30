@@ -9,9 +9,9 @@ class FinanceHomeComponent(
   componentContext: ComponentContext
 ) : FinanceHome, ComponentContext by componentContext {
 
-  private val database = CardOnFileRepositoryImp()
+  private val repository = CardOnFileRepositoryImp()
 
-  private val financeRouter = FinanceRouter(componentContext = this, database = database)
+  private val financeRouter = FinanceRouter(componentContext = this, repository = repository)
 
   override val routerState: Value<RouterState<*, FinanceHome.FinanceHomeChild>> =
     financeRouter.state
