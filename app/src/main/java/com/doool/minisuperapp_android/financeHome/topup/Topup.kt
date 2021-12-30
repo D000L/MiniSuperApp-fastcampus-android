@@ -3,6 +3,7 @@ package com.doool.minisuperapp_android.financeHome.topup
 import com.arkivanov.decompose.router.RouterState
 import com.arkivanov.decompose.value.Value
 import com.doool.minisuperapp_android.financeHome.addPaymentMethod.AddPaymentMethodComponent
+import com.doool.minisuperapp_android.financeHome.topup.cardOnFile.CardOnFileComponent
 import com.doool.minisuperapp_android.financeHome.topup.enterAmount.EnterAmountComponent
 
 interface Topup {
@@ -12,5 +13,6 @@ interface Topup {
   sealed class TopupChild {
     class AddPaymentMethod(val component: AddPaymentMethodComponent) : TopupChild()
     class EnterAmount(val component: EnterAmountComponent) : TopupChild()
+    class CardOnFile(val component: CardOnFileComponent) : TopupChild()
   }
 }

@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
 import com.doool.minisuperapp_android.financeHome.cardOnFileDashboard.CardOnFileDashboard
+import com.doool.minisuperapp_android.financeHome.topup.models.PaymentMethod
 
 @Composable
 fun CardOnFileDashboardUI(component: CardOnFileDashboard) {
@@ -49,7 +50,7 @@ private fun Header(onClickMore: () -> Unit) {
 }
 
 @Composable
-private fun CardList(paymentMethods: List<CardOnFileDashboard.PaymentMethod>) {
+private fun CardList(paymentMethods: List<PaymentMethod>) {
   paymentMethods.forEach {
     Box(
       Modifier

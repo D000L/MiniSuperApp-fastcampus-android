@@ -3,9 +3,7 @@ package com.doool.minisuperapp_android.ui.appHome
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
@@ -18,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
@@ -30,9 +29,11 @@ import com.doool.minisuperapp_android.appHome.AppHome
 fun AppHomeUI(component: AppHome) {
   val model by component.models.subscribeAsState()
 
-  Column(Modifier.background(Color.Gray)) {
-    Text(text = "홈")
-
+  Column(
+    Modifier
+      .fillMaxSize()
+      .padding(10.dp)
+  ) {
     LazyVerticalGrid(cells = GridCells.Fixed(2), content = {
       items(model.widgets) {
         HomeWidgetUI(widget = it)
@@ -45,13 +46,21 @@ fun AppHomeUI(component: AppHome) {
 private fun HomeWidgetUI(widget: AppHome.HomeWidget) {
   Column(
     Modifier
-      .padding(25.dp)
+      .padding(10.dp)
+      .height(100.dp)
       .fillMaxSize()
+      .shadow(4.dp, shape = RoundedCornerShape(12.dp))
       .background(colorResource(id = R.color.white), shape = RoundedCornerShape(12.dp))
       .clickable { widget.tapHandler() },
-    horizontalAlignment = Alignment.CenterHorizontally
+    horizontalAlignment = Alignment.CenterHorizontally,
+    verticalArrangement = Arrangement.Center
   ) {
-    Icon(imageVector = Icons.Default.Home, contentDescription = null)
-    Text(text = widget.title)
+    Icon(
+      modifier = Modifier.size(42.dp),
+      imageVector = Icons.Default.Home,
+      tint = Color.Black,
+      contentDescription = null
+    )
+    Text(text = widget.title, color = Color.Black)
   }
 }

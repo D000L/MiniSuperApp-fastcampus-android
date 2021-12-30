@@ -5,12 +5,13 @@ import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.decompose.value.operator.map
 import com.doool.minisuperapp_android.database.CardOnFileRepository
-import com.doool.minisuperapp_android.financeHome.cardOnFileDashboard.CardOnFileDashboard
+import com.doool.minisuperapp_android.financeHome.topup.models.PaymentMethod
 
 class EnterAmountComponent(
   componentContext: ComponentContext,
   private val repository: CardOnFileRepository,
-  private val selectedPaymentMethod: MutableValue<CardOnFileDashboard.PaymentMethod>
+  private val selectedPaymentMethod: MutableValue<PaymentMethod>,
+  private val showCardOnFile: () -> Unit
 ) : EnterAmount, ComponentContext by componentContext {
 
   override val models: Value<EnterAmount.Model> = selectedPaymentMethod.map {
@@ -22,7 +23,7 @@ class EnterAmountComponent(
   }
 
   override fun enterAmountDidTapPaymentMethod() {
-    TODO("Not yet implemented")
+    showCardOnFile()
   }
 
 }

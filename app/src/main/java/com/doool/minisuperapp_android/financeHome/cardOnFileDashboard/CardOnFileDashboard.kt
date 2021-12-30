@@ -1,6 +1,7 @@
 package com.doool.minisuperapp_android.financeHome.cardOnFileDashboard
 
 import com.arkivanov.decompose.value.Value
+import com.doool.minisuperapp_android.financeHome.topup.models.PaymentMethod
 
 interface CardOnFileDashboard {
 
@@ -11,11 +12,5 @@ interface CardOnFileDashboard {
 
   class Model(
     val paymentMethods: List<PaymentMethod>
-  )
-
-  data class PaymentMethod(
-    val name: String,
-    val digits: String,
-    val color: String
   )
 }

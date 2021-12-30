@@ -6,6 +6,7 @@ import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
 import com.doool.minisuperapp_android.database.CardOnFileRepositoryImp
 import com.doool.minisuperapp_android.financeHome.cardOnFileDashboard.CardOnFileDashboard
+import com.doool.minisuperapp_android.financeHome.topup.models.PaymentMethod
 
 class TopupComponent(
   componentContext: ComponentContext
@@ -13,7 +14,7 @@ class TopupComponent(
 
   private val repository = CardOnFileRepositoryImp()
   private val selectedPaymentMethod = MutableValue(repository.paymentMethods.value.first().run {
-    CardOnFileDashboard.PaymentMethod(name, digits, color)
+    PaymentMethod(name, digits, color)
   })
   private val topupRouter =
     TopupRouter(componentContext = this, repository = repository, selectedPaymentMethod)

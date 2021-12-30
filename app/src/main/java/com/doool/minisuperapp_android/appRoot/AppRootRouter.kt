@@ -16,7 +16,7 @@ class AppRootRouter(
 
   private val router =
     componentContext.router<Config, AppRoot.AppRootChild>(
-      initialConfiguration = Config.FinanceHome,
+      initialConfiguration = Config.Home,
       key = "AppRootRouter",
       childFactory = ::createChild
     )
