@@ -15,6 +15,6 @@ interface EnterAmount {
 
   data class SelectedPaymentMethod(
     val name: String,
-    val iamge: String
+    val image: String
   )
 }

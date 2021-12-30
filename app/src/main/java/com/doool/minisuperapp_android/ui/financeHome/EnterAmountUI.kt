@@ -18,6 +18,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
+import com.doool.minisuperapp_android.financeHome.topup.enterAmount.EnterAmount
 import com.doool.minisuperapp_android.financeHome.topup.enterAmount.EnterAmountComponent
 
 @Preview
@@ -29,6 +32,7 @@ private fun PreviewEnterAmountUI() {
 @Composable
 fun EnterAmountUI(component: EnterAmountComponent) {
   var amount by remember { mutableStateOf(0L) }
+  val model by component.models.subscribeAsState()
 
   Column(
     modifier = Modifier
@@ -37,7 +41,10 @@ fun EnterAmountUI(component: EnterAmountComponent) {
   ) {
 
     Spacer(modifier = Modifier.height(8.dp))
-    PaymentMethodSelect(onClickSelectPaymentMethod = component::enterAmountDidTapPaymentMethod)
+    PaymentMethodSelect(
+      paymentMethod = model.selectedPaymentMethod,
+      onClickSelectPaymentMethod = component::enterAmountDidTapPaymentMethod
+    )
     Spacer(modifier = Modifier.height(8.dp))
     AmountField(amount) { amount = it.toLong() }
     Spacer(modifier = Modifier.height(26.dp))
@@ -46,24 +53,30 @@ fun EnterAmountUI(component: EnterAmountComponent) {
 }
 
 @Composable
-fun PaymentMethodSelect(onClickSelectPaymentMethod: () -> Unit) {
+fun PaymentMethodSelect(
+  paymentMethod: EnterAmount.SelectedPaymentMethod,
+  onClickSelectPaymentMethod: () -> Unit
+) {
   Row(
     Modifier
       .clickable(onClick = onClickSelectPaymentMethod)
       .fillMaxWidth()
-      .height(46.dp)
+      .height(70.dp)
       .shadow(6.dp, RoundedCornerShape(8.dp))
       .background(Color.White, RoundedCornerShape(8.dp))
-      .padding(10.dp),
+      .padding(start = 20.dp, end = 22.dp),
     verticalAlignment = Alignment.CenterVertically
   ) {
     Box(
       Modifier
-        .size(height = 20.dp, width = 34.dp)
-        .background(Color.White, RoundedCornerShape(4.dp))
+        .size(height = 34.dp, width = 46.dp)
+        .background(
+          Color(android.graphics.Color.parseColor(paymentMethod.image)),
+          RoundedCornerShape(4.dp)
+        )
     )
-    Spacer(modifier = Modifier.width(6.dp))
-    Text(text = "우리은행 0123")
+    Spacer(modifier = Modifier.width(22.dp))
+    Text(text = paymentMethod.name, color = Color.Black, fontSize = 16.sp)
     Spacer(modifier = Modifier.weight(1f))
     IconButton(onClick = { /*TODO*/ }) {
       Icon(imageVector = Icons.Default.Done, contentDescription = null)
@@ -81,7 +94,7 @@ private fun AmountField(amount: Long, updateAmount: (String) -> Unit) {
       .background(Color.White, RoundedCornerShape(8.dp))
       .padding(10.dp)
   ) {
-    Text(modifier = Modifier.align(Alignment.Top), text = "금액")
+    Text(modifier = Modifier.align(Alignment.Top), text = "금액", color = Color.Black)
     Spacer(modifier = Modifier.weight(1f))
     BasicTextField(
       modifier = Modifier.align(Alignment.Bottom),

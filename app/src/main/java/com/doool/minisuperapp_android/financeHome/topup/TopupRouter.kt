@@ -21,7 +21,7 @@ class TopupRouter(
 
   private fun getInitConfig() = repository.paymentMethods.value.firstOrNull()?.let{
       Config.EnterAmount
-    } ?: Config.AddPaymentMethod
+    } ?: Config.EnterAmount
 
   private val router =
     componentContext.router<Config, Topup.TopupChild>(

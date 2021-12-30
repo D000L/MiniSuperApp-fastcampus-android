@@ -8,7 +8,9 @@ import androidx.compose.material.Surface
 import androidx.compose.ui.graphics.Color
 import com.arkivanov.decompose.defaultComponentContext
 import com.doool.minisuperapp_android.appRoot.AppRootComponent
+import com.doool.minisuperapp_android.financeHome.topup.TopupComponent
 import com.doool.minisuperapp_android.ui.appRoot.AppRootUI
+import com.doool.minisuperapp_android.ui.financeHome.TopupUI
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
 
     val root = AppRootComponent(defaultComponentContext())
-
+//    val topup = TopupComponent(defaultComponentContext())
     setContent {
       MaterialTheme(
         colors = MaterialTheme.colors.copy(
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity() {
       ) {
         Surface(color = MaterialTheme.colors.background) {
           AppRootUI(root)
+//          TopupUI(topup)
         }
       }
     }

@@ -12,8 +12,11 @@ class TopupComponent(
 ) : Topup, ComponentContext by componentContext {
 
   private val repository = CardOnFileRepositoryImp()
-  private val selectedPaymentMethod = MutableValue(CardOnFileDashboard.PaymentMethod("",",",""))
-  private val topupRouter = TopupRouter(componentContext = this, repository = repository, selectedPaymentMethod)
+  private val selectedPaymentMethod = MutableValue(repository.paymentMethods.value.first().run {
+    CardOnFileDashboard.PaymentMethod(name, digits, color)
+  })
+  private val topupRouter =
+    TopupRouter(componentContext = this, repository = repository, selectedPaymentMethod)
 
   override val routerState: Value<RouterState<*, Topup.TopupChild>> = topupRouter.state
 }

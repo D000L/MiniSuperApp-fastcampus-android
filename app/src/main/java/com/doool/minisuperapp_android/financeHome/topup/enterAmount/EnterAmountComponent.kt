@@ -14,7 +14,7 @@ class EnterAmountComponent(
 ) : EnterAmount, ComponentContext by componentContext {
 
   override val models: Value<EnterAmount.Model> = selectedPaymentMethod.map {
-    EnterAmount.Model(EnterAmount.SelectedPaymentMethod(it.name,it.color))
+    EnterAmount.Model(EnterAmount.SelectedPaymentMethod(it.name + " **** " + it.digits, it.color))
   }
 
   override fun enterAmountDidTapClose() {
