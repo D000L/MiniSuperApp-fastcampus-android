@@ -5,12 +5,10 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.ui.graphics.Color
 import com.arkivanov.decompose.defaultComponentContext
-import com.doool.minisuperapp_android.appRoot.AppRoot
 import com.doool.minisuperapp_android.appRoot.AppRootComponent
-import com.doool.minisuperapp_android.financeHome.FinanceHomeComponent
 import com.doool.minisuperapp_android.ui.appRoot.AppRootUI
-import com.doool.minisuperapp_android.ui.financeHome.FinanceHomeUI
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,7 +18,13 @@ class MainActivity : AppCompatActivity() {
     val root = AppRootComponent(defaultComponentContext())
 
     setContent {
-      MaterialTheme() {
+      MaterialTheme(
+        colors = MaterialTheme.colors.copy(
+          background = Color.White,
+          primary = Color.White,
+          onPrimary = Color.LightGray,
+        )
+      ) {
         Surface(color = MaterialTheme.colors.background) {
           AppRootUI(root)
         }

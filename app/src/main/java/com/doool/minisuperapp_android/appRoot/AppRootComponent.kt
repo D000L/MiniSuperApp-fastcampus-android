@@ -9,7 +9,7 @@ class AppRootComponent(
   componentContext: ComponentContext
 ) : AppRoot, ComponentContext by componentContext {
 
-  override val models: MutableValue<AppRoot.Model> = MutableValue(AppRoot.Model(AppRoot.Tab.Home))
+  override val models: MutableValue<AppRoot.Model> = MutableValue(AppRoot.Model(AppRoot.Tab.FinanceHome))
 
   private val appHomeRouter = AppRootRouter(componentContext = this)
 

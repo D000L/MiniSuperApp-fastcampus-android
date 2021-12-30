@@ -16,7 +16,7 @@ class AppRootRouter(
 
   private val router =
     componentContext.router<Config, AppRoot.AppRootChild>(
-      initialConfiguration = Config.Home,
+      initialConfiguration = Config.FinanceHome,
       key = "AppRootRouter",
       childFactory = ::createChild
     )
@@ -34,12 +34,14 @@ class AppRootRouter(
           componentContext
         )
       )
+      AppRoot.Tab.Profile -> AppRoot.AppRootChild.Profile
     }
 
   fun changeTab(tab: AppRoot.Tab) {
     val next = when (tab) {
       AppRoot.Tab.Home -> Config.Home
       AppRoot.Tab.FinanceHome -> Config.FinanceHome
+      AppRoot.Tab.Profile -> Config.Profile
     }
     if (router.state.value.activeChild.configuration != next) router.replaceCurrent(next)
   }
@@ -51,5 +53,8 @@ class AppRootRouter(
 
     @Parcelize
     object FinanceHome : Config(AppRoot.Tab.FinanceHome)
+
+    @Parcelize
+    object Profile : Config(AppRoot.Tab.Profile)
   }
 }

@@ -26,6 +26,10 @@ class CardOnFileDashboardComponent(
     showAddPaymentMethod()
   }
 
+  override fun didTabMore() {
+    TODO("Not yet implemented")
+  }
+
   private fun PaymentMethodEntity.toPaymentMethod(): PaymentMethod {
     return PaymentMethod(name, digits, color)
   }

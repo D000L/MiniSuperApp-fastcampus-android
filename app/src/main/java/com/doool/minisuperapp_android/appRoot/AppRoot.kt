@@ -13,8 +13,8 @@ interface AppRoot {
 
   fun changeTab(tab: Tab)
 
-  enum class Tab {
-    Home, FinanceHome
+  enum class Tab(val label : String) {
+    Home("홈"), FinanceHome("슈퍼페이"), Profile("프로필")
   }
 
   class Model(
@@ -24,5 +24,6 @@ interface AppRoot {
   sealed class AppRootChild {
     class Home(val component: AppHome) : AppRootChild()
     class FinanceHome(val component: FinanceHomeComponent) : AppRootChild()
+    object Profile : AppRootChild()
   }
 }

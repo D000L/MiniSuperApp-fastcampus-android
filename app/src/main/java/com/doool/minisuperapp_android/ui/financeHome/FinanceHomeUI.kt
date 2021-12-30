@@ -1,11 +1,15 @@
 package com.doool.minisuperapp_android.ui.financeHome
 
+import android.widget.Space
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.ExperimentalDecomposeApi
 import com.arkivanov.decompose.extensions.compose.jetpack.Children
 import com.arkivanov.decompose.extensions.compose.jetpack.animation.child.slide
@@ -30,6 +34,7 @@ fun FinanceHomeUI(component: FinanceHome) {
 fun FinanceHomeDashboardUI(component: FinanceHome.FinanceHomeChild.Home) {
   Column(Modifier.verticalScroll(rememberScrollState())) {
     SuperPayDashboardUI(component = component.superPayDashboard)
+    Spacer(Modifier.height(20.dp))
     CardOnFileDashboardUI(component = component.cardOnFileDashboard)
   }
 }

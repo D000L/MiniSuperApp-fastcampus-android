@@ -7,6 +7,7 @@ interface CardOnFileDashboard {
   val models: Value<Model>
 
   fun didTabAddPaymentMethod()
+  fun didTabMore()
 
   class Model(
     val paymentMethods: List<PaymentMethod>
